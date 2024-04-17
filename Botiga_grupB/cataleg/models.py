@@ -4,10 +4,10 @@ from django.db import models
 class Producte(models.Model):
     nom = models.CharField(max_length=30)
     marca = models.CharField(max_length=30)
-    preu = models.FloatField()
-    estoc = models.IntegerField()
+    preu = models.FloatField(default=0)
+    estoc = models.IntegerField(default=0)
     gama = models.CharField(max_length=30)
-    pes = models.FloatField()
+    pes = models.FloatField(default=0)
 
 class Cataleg(models.Model):
     id_producte = models.ForeignKey(Producte, on_delete=models.CASCADE)
