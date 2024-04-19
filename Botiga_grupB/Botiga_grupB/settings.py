@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cataleg.apps.CatalegConfig',
     'carreto.apps.CarretoConfig',
+    'usuari.apps.UsuariConfig',
     'rest_framework',
 ]
 
