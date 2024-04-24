@@ -10,4 +10,4 @@ class Producte(models.Model):
     pes = models.FloatField(default=0)
 
 class Cataleg(models.Model):
-    id_producte = models.ForeignKey(Producte, on_delete=models.CASCADE)
+    productes = models.ManyToManyField(Producte)
