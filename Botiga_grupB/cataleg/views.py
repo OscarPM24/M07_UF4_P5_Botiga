@@ -22,3 +22,17 @@ def cataleg(request, id):
     queryset = Cataleg.objects.get(id=id)
     serializer = CatalegSerializer(queryset)
     return Response({"Cataleg": serializer.data})
+
+@api_view(["GET", "POST"])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
+def afegirProducte(request, id):
+    queryset = Cataleg.objects.get(id=id)
+    if request.method == "POST":
+        producte = request.data
+        queryset.productes.add(producte)
+
+    queryset = Cataleg.objects.get(id=id)
+    serializer = CatalegSerializer(queryset)
+    return Response({"Cataleg": serializer.data})
+
+

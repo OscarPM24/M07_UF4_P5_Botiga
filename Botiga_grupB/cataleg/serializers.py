@@ -7,6 +7,7 @@ class ProducteSerializer(serializers.ModelSerializer):
         fields = ['id', 'nom', 'marca', 'gama', 'preu', 'estoc', 'pes']
 
 class CatalegSerializer(serializers.ModelSerializer):
+    productes = ProducteSerializer(many="True")
     class Meta:
         model = Cataleg
         fields = ['id', 'productes']
