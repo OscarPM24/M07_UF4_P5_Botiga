@@ -35,4 +35,13 @@ def afegirProducte(request, id):
     serializer = CatalegSerializer(queryset)
     return Response({"Cataleg": serializer.data})
 
+@api_view(["GET", "DELETE"])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
+def eliminarProducte(request, id_cataleg, id_prod):
+    queryset = Cataleg.objects.get(id=id_cataleg)
+    if request.method == "DELETE":
+        queryset.productes.remove(id_prod)
 
+    queryset = Cataleg.objects.get(id=id_cataleg)
+    serializer = CatalegSerializer(queryset)
+    return Response({"Cataleg": serializer.data})
