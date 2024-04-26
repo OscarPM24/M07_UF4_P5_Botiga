@@ -2,7 +2,8 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 from rest_framework.response import Response
-from .models import Carreto
+from .models import Carreto, DetallCarreto
+from cataleg.models import Producte
 from .serializers import CarretoSerializer
 from cataleg.serializers import ProducteSerializer
 
@@ -23,13 +24,17 @@ def carretoActual(request, id):
 @api_view(['GET', 'POST'])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def afegeixProducte(request, id):
-
     carreto = Carreto.objects.get(id=id)
+    prod_id = request.data
+    print(carreto.productes)
     if request.method == 'POST':
-        producte = request.data
-        carreto.productes.add(producte)
-
+        if DetallCarreto.objects.get(producte_id=prod_id):
+            detalls = DetallCarreto.objects.get(producte_id=prod_id)
+            detalls.quantitat += 1
+            detalls.save()
+        else:
+            producte = Producte.objects.get(id=prod_id)
+            carreto.productes.add(producte)
     serializer = CarretoSerializer(carreto)
-    print(serializer)
-    return Response({"Carreto":carreto.productes.all().values()})
+    return Response({"Carreto": serializer.data})
 
