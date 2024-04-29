@@ -50,3 +50,13 @@ def eliminaProducte(request, id, producte_id):
                 detalls.delete()
     serializer = CarretoSerializer(carreto)
     return Response({"Carreto": serializer.data})
+@api_view(['GET', 'DELETE'])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
+def eliminaCarreto(request, id):
+    carreto = Carreto.objects.get(id=id)
+    if request.method == 'DELETE':
+        carreto.delete()
+    carretons = Carreto.objects.all()
+    serializer = CarretoSerializer(carretons, many=True)
+    print(serializer)
+    return Response({"Carreto": serializer.data})
