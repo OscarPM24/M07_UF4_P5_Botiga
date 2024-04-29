@@ -26,9 +26,8 @@ def carretoActual(request, id):
 def afegeixProducte(request, id):
     carreto = Carreto.objects.get(id=id)
     prod_id = request.data
-    print(carreto.productes)
     if request.method == 'POST':
-        if DetallCarreto.objects.get(producte_id=prod_id):
+        if DetallCarreto.objects.filter(producte_id=prod_id):
             detalls = DetallCarreto.objects.get(producte_id=prod_id)
             detalls.quantitat += 1
             detalls.save()
