@@ -36,4 +36,17 @@ def afegeixProducte(request, id):
             carreto.productes.add(producte)
     serializer = CarretoSerializer(carreto)
     return Response({"Carreto": serializer.data})
-
+@api_view(['GET', 'DELETE'])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
+def eliminaProducte(request, id, producte_id):
+    carreto = Carreto.objects.get(id=id)
+    if request.method == 'DELETE':
+        if DetallCarreto.objects.filter(producte_id=producte_id):
+            detalls = DetallCarreto.objects.get(producte_id=producte_id)
+            if detalls.quantitat > 1:
+                detalls.quantitat -= 1
+                detalls.save()
+            else:
+                detalls.delete()
+    serializer = CarretoSerializer(carreto)
+    return Response({"Carreto": serializer.data})
