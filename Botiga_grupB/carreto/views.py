@@ -60,3 +60,17 @@ def eliminaCarreto(request, id):
     serializer = CarretoSerializer(carretons, many=True)
     print(serializer)
     return Response({"Carreto": serializer.data})
+@api_view(['GET', 'PUT'])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
+def modificaQuantitat(request, id, producte_id):
+    carreto = Carreto.objects.get(id=id)
+    if request.method == 'PUT':
+        quantitat = request.data
+        if quantitat < 1:
+            quantitat = 1
+        if DetallCarreto.objects.filter(producte_id=producte_id):
+            detalls = DetallCarreto.objects.get(producte_id=producte_id)
+            detalls.quantitat = quantitat
+            detalls.save()
+    serializer = CarretoSerializer(carreto)
+    return Response({"Carreto": serializer.data})
