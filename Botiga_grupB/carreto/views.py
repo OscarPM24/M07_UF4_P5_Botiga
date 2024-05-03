@@ -4,7 +4,7 @@ from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 from rest_framework.response import Response
 from .models import Carreto, DetallCarreto
 from cataleg.models import Producte
-from .serializers import CarretoSerializer
+from .serializers import CarretoSerializer, DetallCarretoSerializer
 from cataleg.serializers import ProducteSerializer
 
 # Create your views here.
@@ -72,5 +72,6 @@ def modificaQuantitat(request, id, producte_id):
             detalls = DetallCarreto.objects.get(producte_id=producte_id)
             detalls.quantitat = quantitat
             detalls.save()
-    serializer = CarretoSerializer(carreto)
+    detall_product = DetallCarreto.objects.get(producte_id=producte_id)
+    serializer = DetallCarretoSerializer(detall_product)
     return Response({"Carreto": serializer.data})
