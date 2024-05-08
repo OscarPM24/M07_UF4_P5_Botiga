@@ -6,8 +6,10 @@ from usuari.models import Usuari
 class Carreto(models.Model):
     usuari = models.ForeignKey(Usuari, null=True, on_delete=models.CASCADE)
     productes = models.ManyToManyField(Producte, through='DetallCarreto')
+    pagat = models.BooleanField(default=False)
 
 class DetallCarreto(models.Model):
     carreto = models.ForeignKey(Carreto, on_delete=models.CASCADE)
     producte = models.ForeignKey(Producte, on_delete=models.CASCADE)
     quantitat = models.IntegerField(default=1)
+
