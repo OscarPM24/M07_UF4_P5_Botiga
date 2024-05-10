@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'carreto.apps.CarretoConfig',
     'usuari.apps.UsuariConfig',
     'pagaments.apps.PagamentsConfig',
+    'comandes.apps.ComandesConfig',
     'rest_framework',
 ]
 
