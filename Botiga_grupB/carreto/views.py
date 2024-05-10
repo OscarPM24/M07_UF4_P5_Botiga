@@ -4,6 +4,7 @@ from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 from rest_framework.response import Response
 from .models import Carreto, DetallCarreto
 from cataleg.models import Producte
+from comandes.models import Comandes
 from .serializers import CarretoSerializer, DetallCarretoSerializer
 from cataleg.serializers import ProducteSerializer
 
@@ -27,13 +28,16 @@ def afegeixProducte(request, id):
     carreto = Carreto.objects.get(id=id)
     prod_id = request.data
     if request.method == 'POST':
+        producte = Producte.objects.get(id=prod_id)
         if DetallCarreto.objects.filter(producte_id=prod_id):
             detalls = DetallCarreto.objects.get(producte_id=prod_id)
             detalls.quantitat += 1
             detalls.save()
         else:
-            producte = Producte.objects.get(id=prod_id)
             carreto.productes.add(producte)
+        comanda = Comandes.objects.get(carreto_id=id)
+        comanda.total += producte.preu
+        comanda.save()
     serializer = CarretoSerializer(carreto)
     return Response({"Carreto": serializer.data})
 @api_view(['GET', 'DELETE'])
@@ -42,6 +46,9 @@ def eliminaProducte(request, id, producte_id):
     carreto = Carreto.objects.get(id=id)
     if request.method == 'DELETE':
         if DetallCarreto.objects.filter(producte_id=producte_id):
+            comanda = Comandes.objects.get(carreto_id=id)
+            comanda.total -= Producte.objects.get(id=producte_id).preu
+            comanda.save()
             detalls = DetallCarreto.objects.get(producte_id=producte_id)
             if detalls.quantitat > 1:
                 detalls.quantitat -= 1
@@ -63,13 +70,18 @@ def eliminaCarreto(request, id):
 @api_view(['GET', 'PUT'])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def modificaQuantitat(request, id, producte_id):
-    carreto = Carreto.objects.get(id=id)
     if request.method == 'PUT':
         quantitat = request.data
         if quantitat < 1:
             quantitat = 1
         if DetallCarreto.objects.filter(producte_id=producte_id):
             detalls = DetallCarreto.objects.get(producte_id=producte_id)
+            comanda = Comandes.objects.get(carreto_id=id)
+            if quantitat < detalls.quantitat:
+                comanda.total -= Producte.objects.get(id=producte_id).preu*(detalls.quantitat - quantitat)
+            else:
+                comanda.total += Producte.objects.get(id=producte_id).preu*(quantitat - detalls.quantitat)
+            comanda.save()
             detalls.quantitat = quantitat
             detalls.save()
     detall_product = DetallCarreto.objects.get(producte_id=producte_id)
