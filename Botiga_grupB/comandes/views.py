@@ -14,8 +14,7 @@ def historic(request, id):
     comandes = Comandes.objects.filter(user=usuari)
     for comanda in comandes:
         if comanda.carreto.pagat:
-            serializer = ComandesSerializer(comanda)
-            comandesSerialitzades.append(serializer.data)
+            comandesSerialitzades.append(ComandesSerializer(comanda).data)
     return Response({"Comandes": comandesSerialitzades})
 
 # Create your views here.
