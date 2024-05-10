@@ -10,16 +10,21 @@ from pagaments.models import Pagaments
 @api_view(["GET", "POST"])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def pagarCarreto(request, id_carreto):
-    queryset = Carreto.objects.get(id=id_carreto)
-    serializer = CarretoSerializer(queryset)
+    carreto = Carreto.objects.get(id=id_carreto)
+    serializer = CarretoSerializer(carreto)
+    if carreto.pagat:
+        return Response({"message": "Aquest carreto ja està pagat!"})
+
     if request.method == "POST":
         dades = request.data
         pagament = Pagaments.objects.filter(tarjeta=dades['tarjeta'])
         if len(pagament) != 0:
             pagament = Pagaments.objects.get(tarjeta=dades['tarjeta'])
             if dades["tarjeta"] == pagament.tarjeta and dades["data_caducitat"] == pagament.data_caducitat and dades["cvc"] == pagament.cvc:
-                return Response({"message":"Pagament Correcte!"})
-        return Response({"message":"Pagament Incorrecte!"})
+                carreto.pagat = True
+                carreto.save()
+                return Response({"message": "Pagament Correcte!"})
+        return Response({"message": "Pagament Incorrecte!"})
 
     return Response({"Carreto": serializer.data})
 
