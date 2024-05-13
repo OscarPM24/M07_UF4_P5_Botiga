@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cataleg.apps.CatalegConfig',
+    'cataleg.apps.CatalegConfig', # Instal·lem l'aplicació del catàleg
     'carreto.apps.CarretoConfig',
     'usuari.apps.UsuariConfig',
     'pagaments.apps.PagamentsConfig',

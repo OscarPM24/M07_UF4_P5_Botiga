@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('cataleg/', include('cataleg.urls')),
+    path('cataleg/', include('cataleg.urls')), # Ruta a la url de cataleg
     path('admin/', admin.site.urls),
     path('carreto/', include('carreto.urls')),
     path('pagaments/', include('pagaments.urls')),
