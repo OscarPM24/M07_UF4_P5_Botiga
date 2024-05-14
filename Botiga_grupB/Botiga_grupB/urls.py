@@ -21,6 +21,6 @@ urlpatterns = [
     path('cataleg/', include('cataleg.urls')), # Ruta a la url de cataleg
     path('admin/', admin.site.urls),
     path('carreto/', include('carreto.urls')),
-    path('pagaments/', include('pagaments.urls')),
+    path('pagaments/', include('pagaments.urls')), # Ruta a la url dels pagaments
     path('comandes/', include('comandes.urls')),
 ]

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'cataleg.apps.CatalegConfig', # Instal·lem l'aplicació del catàleg
     'carreto.apps.CarretoConfig',
     'usuari.apps.UsuariConfig',
-    'pagaments.apps.PagamentsConfig',
+    'pagaments.apps.PagamentsConfig', #Instal·lem l'aplicació dels pagaments
     'comandes.apps.ComandesConfig',
     'rest_framework',
 ]
