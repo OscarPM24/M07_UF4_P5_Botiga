@@ -35,9 +35,47 @@ Contingut (Key, Value):
 ![cataleg_editar_1_content.png](img%2Fcataleg_editar_1_content.png)
 
 
+## Carreto
 
+Index carretons (**/carreto**):
 
+![carretons.png](img/carretons.png)
 
+Mostrem un carreto (carretoActual) (**/carreto/1**):
+
+![carretoActual.png](img/carreto_carretoActual.png)
+
+Afegim un producte al carreto (**/carreto/1/afegeixProducte**):
+
+![carreto_afegeixProducte.png](img%2Fcarreto_afegeixProducte.png)
+
+Resultat:
+
+![carreto_producteAfegit.png](img%2Fcarreto_producteAfegit.png)
+
+Modifiquem la quantiat d'un producte (**/carreto/1/modificaQuantitat/1**):
+
+![modificaQuantitatProd.png](img/carreto_modificaQuantitatProd.png)
+
+Resultat:
+
+![quantitatModificada.png](img/carreto_quantitatModificada.png)
+
+Eliminem un producte del carreto (**/carreto/1/eliminaProducte/1**):
+
+![eliminaProducte.png](img/carreto_eliminaProducte.png)
+
+Resultat:
+
+![carreto_producteEliminat.png](img%2Fcarreto_producteEliminat.png)
+
+Eliminem el carreto sencer (**/carreto/1/eliminaCarreto**):
+
+![eliminaCarreto.png](img/carreto_eliminaCarreto.png)
+
+Resultat:
+
+![carretoEliminat.png](img/carreto_carretoEliminat.png)
 
 
 ## Pagaments
