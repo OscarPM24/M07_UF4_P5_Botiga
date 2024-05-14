@@ -33,3 +33,35 @@ Després d'editar el producte amb ID 2:
 
 Contingut (Key, Value):
 ![cataleg_editar_1_content.png](img%2Fcataleg_editar_1_content.png)
+
+
+
+
+
+
+
+## Pagaments
+
+Abans de pagar un carretó (**/pagaments/carreto/1**):
+
+![pagament_1.png](img%2Fpagament_1.png)
+
+Dades tarjeta correcte:
+
+![pagament_correcte_content.png](img%2Fpagament_correcte_content.png)
+
+Resultat:
+
+![pagament_correcte.png](img%2Fpagament_correcte.png)
+
+Dades tarjeta incorrecte:
+
+![pagament_incorrecte_content.png](img%2Fpagament_incorrecte_content.png)
+
+Resultat:
+
+![pagament_incorrecte.png](img%2Fpagament_incorrecte.png)
+
+Carretó ja pagat:
+
+![pagament_pagat.png](img%2Fpagament_pagat.png)
