@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cataleg.apps.CatalegConfig', # Instal·lem l'aplicació del catàleg
-    'carreto.apps.CarretoConfig',
+    'carreto.apps.CarretoConfig', #Definició de la ruta de configuració de la app carreto
     'usuari.apps.UsuariConfig',
     'pagaments.apps.PagamentsConfig', #Instal·lem l'aplicació dels pagaments
     'comandes.apps.ComandesConfig',
