@@ -5,7 +5,7 @@ from .models import Comandes
 from .serializers import ComandesSerializer
 from usuari.models import Usuari
 
-# Create your views here.
+# historic -> view que rep per paràmetre GET la id d'un usuari i mostra l'historial dels carretons ja pagats
 @api_view(['GET'])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def historic(request, id):
@@ -17,7 +17,7 @@ def historic(request, id):
             comandesSerialitzades.append(ComandesSerializer(comanda).data)
     return Response({"Comandes": comandesSerialitzades})
 
-# Create your views here.
+# pendents -> Mostra les comandes que no estan pagades (carretons sense finalitzar)
 @api_view(['GET'])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def pendents(request):
