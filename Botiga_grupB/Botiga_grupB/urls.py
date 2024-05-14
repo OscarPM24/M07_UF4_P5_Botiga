@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('carreto/', include('carreto.urls')), #Ruta a la url de carreto
     path('pagaments/', include('pagaments.urls')), # Ruta a la url dels pagaments
-    path('comandes/', include('comandes.urls')),
+    path('comandes/', include('comandes.urls')), #Ruta a la url de comandes
 ]

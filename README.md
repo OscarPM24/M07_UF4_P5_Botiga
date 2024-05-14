@@ -77,6 +77,15 @@ Resultat:
 
 ![carretoEliminat.png](img/carreto_carretoEliminat.png)
 
+## Comandes
+
+Mostra les comandes pagades (**/comandes/historic**):
+
+![comandes_historic.png](img/comandes_historic.png)
+
+Mostra les comandes pendents (sense pagar) (**/comandes/pendents**):
+
+![comandes_pendents.png](img/comandes_pendents.png)
 
 ## Pagaments
 

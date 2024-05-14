@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'carreto.apps.CarretoConfig', #Definició de la ruta de configuració de la app carreto
     'usuari.apps.UsuariConfig',
     'pagaments.apps.PagamentsConfig', #Instal·lem l'aplicació dels pagaments
-    'comandes.apps.ComandesConfig',
+    'comandes.apps.ComandesConfig', #Definició de la ruta de configuració de la app comandes
     'rest_framework',
 ]
 
